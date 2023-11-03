@@ -1,20 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+
+import { StyleSheet, Text, View, Button, Image, FlatList } from "react-native";
+
+import "react-native-reanimated";
+import { NavigationContainer } from "@react-navigation/native";
+import Navigation from "./src/navigation";
+import WatchListProvider from "./src/screen/Contexts/WatchContext";
+import { RecoilRoot } from "recoil";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer
+      theme={{
+        colors: {
+          background: "#121212",
+        },
+      }}
+    >
+      <RecoilRoot>
+        <WatchListProvider>
+          <View style={styles.container}>
+            <Navigation />
+
+            <StatusBar style="light" />
+          </View>
+        </WatchListProvider>
+      </RecoilRoot>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#121212",
+    paddingTop: 50,
   },
 });
